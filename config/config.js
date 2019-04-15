@@ -13,8 +13,16 @@ export default {
       component: '../layout',
       routes: [
         {
-          path: 'helloworld',
+          path: '/helloworld',
           component: './HelloWorld'
+        },
+        {
+          path: '/dashboard',
+          routes: [
+            { path: '/dashboard/analysis', component: 'DashBoard/Analysis' },
+            { path: '/dashboard/monitor', component: 'DashBoard/Monitor' },
+            { path: '/dashboard/workplace', component: 'DashBoard/Workplace' }
+          ]
         },
         {
           component: './404'
