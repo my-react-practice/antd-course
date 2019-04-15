@@ -3,7 +3,7 @@ export default {
     [
       'umi-plugin-react',
       {
-        // todo...
+        antd: true
       }
     ]
   ],
