@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "umi": "^2.6.13"
+    "umi": "^2.6.13",
+    "umi-plugin-react": "^1.7.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "umi dev",
+    "build": "umi build"
   },
   "keywords": [],
   "author": "",
