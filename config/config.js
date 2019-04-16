@@ -20,15 +20,16 @@ export default {
         {
           path: '/dashboard',
           routes: [
-            { path: '/dashboard/analysis', component: 'DashBoard/Analysis' },
-            { path: '/dashboard/monitor', component: 'DashBoard/Monitor' },
-            { path: '/dashboard/workplace', component: 'DashBoard/Workplace' }
+            { path: '/dashboard/analysis', component: './DashBoard/Analysis' },
+            { path: '/dashboard/monitor', component: './DashBoard/Monitor' },
+            { path: '/dashboard/workplace', component: './DashBoard/Workplace' }
           ]
         },
         {
           path: '/puzzlecards',
           component: './puzzlecards'
         },
+        { path: '/list', component: './list' },
         {
           component: './404'
         }
