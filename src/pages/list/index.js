@@ -1,12 +1,15 @@
 import React from 'react';
 import { Table, Modal, Button, Form, Input } from 'antd';
 import { connect } from 'dva';
+import SampleChart from '../../components/SampleChart';
 
 const FormItem = Form.Item;
 
 class List extends React.Component {
   state = {
-    visible: false
+    visible: false,
+    statisticVisible: false,
+    id: null
   };
   columns = [
     {
@@ -21,6 +24,21 @@ class List extends React.Component {
       title: '链接',
       dataIndex: 'url',
       render: value => <a href={value}>{value}</a>
+    },
+    {
+      title: '',
+      dataIndex: '_',
+      render: (_, { id }) => {
+        return (
+          <Button
+            onClick={() => {
+              this.showStatistic(id);
+            }}
+          >
+            图表
+          </Button>
+        );
+      }
     }
   ];
 
@@ -57,13 +75,29 @@ class List extends React.Component {
     });
   };
 
+  showStatistic = id => {
+    this.props.dispatch({
+      type: 'cards/getStatistic',
+      payload: id
+    });
+    // 更新 state，弹出包含图表的对话框
+    this.setState({ id, statisticVisible: true });
+  };
+
+  handleStatisticCancel = () => {
+    this.setState({
+      statisticVisible: false
+    });
+  };
+
   render() {
     const {
       cardsList,
       cardsLoading,
-      form: { getFieldDecorator }
+      form: { getFieldDecorator },
+      statistic
     } = this.props;
-    const { visible } = this.state;
+    const { visible, statisticVisible, id } = this.state;
     return (
       <div>
         <Table columns={this.columns} dataSource={cardsList} loading={cardsLoading} rowKey='id' />
@@ -83,14 +117,20 @@ class List extends React.Component {
             </FormItem>
           </Form>
         </Modal>
+
+        <Modal visible={statisticVisible} footer={null} onCancel={this.handleStatisticCancel}>
+          <SampleChart data={statistic[id]} />
+        </Modal>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     cardsList: state.cards.cardsList,
+    statistic: state.cards.statistic,
     cardsLoading: state.loading.effects['cards/queryList']
   };
 }

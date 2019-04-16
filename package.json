@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@antv/g2": "^3.5.3",
     "umi": "^2.6.13",
     "umi-plugin-react": "^1.7.4"
   },
