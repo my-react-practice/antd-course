@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 
 export default {
   // 使用 mockjs 等三方库
-  'GET /api/cards': (req, res) => {
+  'GET /api/randomOrder': (req, res) => {
     setTimeout(() => {
       // res.status(500);
       // res.json({});

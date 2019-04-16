@@ -16,7 +16,7 @@ export default {
   effects: {
     *queryInitCards(_, sagaEffects) {
       const { call, put } = sagaEffects;
-      const endPointURI = '/api/cards';
+      const endPointURI = '/api/randomOrder';
 
       try {
         const puzzle = yield call(request, endPointURI);
