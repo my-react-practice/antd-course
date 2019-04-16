@@ -5,7 +5,7 @@ import { connect } from 'dva';
 const namespace = 'puzzlecards';
 
 const mapStateToProps = state => {
-  console.log('state>>', state);
+  // console.log('state>>', state);
   const cardList = state[namespace].data;
   return {
     cardList
@@ -14,6 +14,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    didMount: () => {
+      dispatch({
+        type: `${namespace}/queryInitCards`
+      });
+    },
     onClickAdd: newCard => {
       const action = {
         type: `${namespace}/addNewCard`,
@@ -29,11 +34,16 @@ const mapDispatchToProps = dispatch => {
   mapDispatchToProps
 )
 export default class PuzzleCardsPage extends Component {
+  componentDidMount() {
+    this.props.didMount();
+  }
+
   addNewCard = () => {
-    this.props.onClickAdd({
-      setup: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      punchline: 'here we use dva'
-    });
+    // this.props.onClickAdd({
+    //   setup: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+    //   punchline: 'here we use dva'
+    // });
+    this.props.didMount();
   };
 
   render() {
